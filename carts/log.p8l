@@ -1,31 +1,248 @@
-choose_card1
-	sum-1
-	rank5
+showing tutorial
 new swap start
 sum: -1
 card 1:
-	rank: 2
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 4
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+showing tutorial
+showing tutorial
+showing tutorial
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
 	index: 7
 card 2:
-	rank: 1
-	index: 5
-will add 2
-sum before subtract3
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
 about to check win
 check win
-no win, rank: 8
-no win, i: 1
+no win, rank: 7
+no win, i: 4
+showing tutorial
 new swap start
 sum: -1
 card 1:
-	rank: 2
-	index: 3
+	rank: 3
+	index: 7
 card 2:
-	rank: 1
-	index: 4
-will add 2
-sum before subtract3
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
 about to check win
 check win
-no win, rank: 5
-no win, i: 1
+no win, rank: 7
+no win, i: 4
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 7
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+no win, rank: 7
+no win, i: 4
+new swap start
+sum: 7
+card 1:
+	rank: 4
+	index: 7
+card 2:
+	rank: 7
+	index: 4
+will add 4
+sum before subtract11
+subtracted 9 from sum
+about to check win
+check win
+setting win to true!!
+true
+showing tutorial
+showing tutorial
+showing tutorial
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 7
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+no win, rank: 7
+no win, i: 4
+showing tutorial
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 7
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+no win, rank: 7
+no win, i: 4
+showing tutorial
+new swap start
+sum: -1
+card 1:
+	rank: 3
+	index: 7
+card 2:
+	rank: 4
+	index: 3
+will add 3
+sum before subtract7
+about to check win
+check win
+no win, rank: 7
+no win, i: 4
+new swap start
+sum: 7
+card 1:
+	rank: 4
+	index: 7
+card 2:
+	rank: 7
+	index: 4
+will add 4
+sum before subtract11
+subtracted 9 from sum
+about to check win
+check win
+setting win to true!!
+true

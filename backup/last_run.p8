@@ -2,19 +2,23 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 function _init()
-	dbug = false
+	dbug = true
 	version = "v0.2"
-	set_init()
 	show_start_screen()
 end
 
-function set_init()
+function set_init(t)
 	chosen = 1
 	sum = -1
 	win = false
 	move_count = 0
 	start_time = time()
 	win_time = nil
+	in_tutorial = t
+
+	if in_tutorial then
+		tutorial_screen = 0
+	end
 end
 
 function _draw()
@@ -28,12 +32,14 @@ end
 function restart_game()
 	_upd = update_game
 	_drw = draw_game
-	set_init()
+	set_init(false)
 	shuffle()
 end
 
 function draw_game()
-	cls()
+	if not in_tutorial then
+		cls()
+	end
 
 	for i = 1, #hand do
 		x = (i - 1) * 10
@@ -75,7 +81,7 @@ function update_game()
 
 	set_highlight()
 
-	if win then
+	if win and not in_tutorial then
 		show_win_screen()
 	end
 end
@@ -100,6 +106,7 @@ function draw_start_screen()
 	print("❎ swap cards", 5)
 
 	print("press ❎ to play", 30, 120, 5 + t() * 10 % 2)
+	print("🅾️ for tutorial", 5)
 	print(version, 110, 120, 5)
 end
 
@@ -107,6 +114,9 @@ function update_start_screen()
 	cls()
 	if btnp(❎) then
 		restart_game()
+	end
+	if btnp(🅾️) then
+		show_tutorial_screen()
 	end
 end
 
@@ -131,6 +141,76 @@ function update_win_screen()
 	if btnp(❎) then
 		restart_game()
 	end
+end
+
+function show_tutorial_screen()
+	debug("showing tutorial")
+	_drw = draw_tutorial_screen
+	_upd = update_tutorial_screen
+
+	set_init(true)
+	begin_tutorial()
+end
+
+function draw_tutorial_screen()
+	cls()
+
+	if tutorial_screen == 0 then
+		print("goal: order cards from 1-9")
+		print("by swapping two cards at a time")
+		print("")
+		print("use ⬅️➡️ to navigate to the 4")
+		print("then use ⬆️ to select it. ")
+		print("🅾️ to start game", 30, 120, 5)
+	elseif tutorial_screen == 1 then
+		print("nice! now select the 3")
+		print("🅾️ to start game", 30, 120, 5)
+	elseif tutorial_screen == 2 then
+		print("great job!")
+		print("press ❎ to swap")
+		print("🅾️ to start game", 30, 120, 5)
+	elseif tutorial_screen == 3 then
+		print("3+4 is 7")
+		print("so you must swap with 7 next")
+		print("")
+		print("the highlighted card is the next")
+		print("\t\t\t\tsummed card")
+		print("")
+		print("blue cards are in the right")
+		print("\t\t\t\tposition")
+		print("🅾️ to start game", 30, 120, 5)
+	elseif tutorial_screen == 9 then
+		print("You've finished the tutorial!")
+		print("🅾️ to start game", 30, 120, 5)
+	end
+	draw_game(false)
+end
+
+function update_tutorial_screen()
+	if btnp(🅾️) then
+		restart_game()
+	end
+
+	if btnp(⬆️) then
+		if tutorial_screen == 0 and chosen == 3 then
+			tutorial_screen = 1
+		end
+		if tutorial_screen == 1 then
+			if chosen == 7 and hand[3].play then
+				tutorial_screen = 2
+			end
+		end
+	end
+
+	if tutorial_screen == 2 and hand[4].rank == sum then
+		tutorial_screen = 3
+	end
+
+	if win then
+		tutorial_screen = 9
+	end
+
+	update_game()
 end
 -->8
 -- cards
@@ -171,7 +251,6 @@ function shuffle()
 
 	for i = 1, #deck do
 		local card = rnd(deck)
-		card.position = i
 		add(hand, card)
 		del(deck, card)
 	end
@@ -276,7 +355,7 @@ function swap(idx)
 	sum_card.play = false
 
 	move_count += 1
-	
+
 	sfx(3)
 
 	debug("about to check win")
@@ -357,6 +436,7 @@ function check_win()
 	end
 
 	debug("setting win to true!!")
+	debug(in_tutorial)
 	win = true
 	win_time = time()
 end
@@ -365,6 +445,30 @@ function debug(txt)
 	if dbug then
 		printh(txt, "log")
 	end
+end
+
+-->8
+-- tutorial
+function begin_tutorial()
+	build_tutorial_hand()
+end
+function build_tutorial_hand()
+	hand = {}
+
+	for i = 1, 9 do
+		local card = {}
+		card.play = false
+		card.rank = i
+		add(hand, card)
+	end
+
+	local c3 = hand[3]
+	local c4 = hand[4]
+	local c7 = hand[7]
+
+	hand[3] = c4
+	hand[4] = c7
+	hand[7] = c3
 end
 
 __gfx__
