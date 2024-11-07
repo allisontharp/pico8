@@ -1,0 +1,31 @@
+choose_card1
+	sum-1
+	rank5
+new swap start
+sum: -1
+card 1:
+	rank: 2
+	index: 7
+card 2:
+	rank: 1
+	index: 5
+will add 2
+sum before subtract3
+about to check win
+check win
+no win, rank: 8
+no win, i: 1
+new swap start
+sum: -1
+card 1:
+	rank: 2
+	index: 3
+card 2:
+	rank: 1
+	index: 4
+will add 2
+sum before subtract3
+about to check win
+check win
+no win, rank: 5
+no win, i: 1

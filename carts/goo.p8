@@ -2,8 +2,8 @@ pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
 function _init()
-	dbug = true
-	version = "v0.1"
+	dbug = false
+	version = "v0.2"
 	set_init()
 	show_start_screen()
 end
@@ -50,11 +50,7 @@ function draw_game()
 		end
 
 		if card.rank == sum then
-			card.summed = true
-			card.play = true
 			y -= 15
-		else
-			card.summed = false
 		end
 
 		draw_card(card, i, x, y)
@@ -62,22 +58,12 @@ function draw_game()
 end
 
 function update_game()
-	--
-	--[[
 	if btnp(⬅️) then
-		chosen -=1
+		choose_card("desc")
 	end
 	if btnp(➡️) then
-		chosen += 1
+		choose_card("asc")
 	end
-	if chosen > #hand then
-		chosen = 1
-	end
-	if chosen <= 0 then
-		chosen = #hand
-	end
-	]]
-	choose_card()
 
 	if btnp(⬆️) then
 		toggle_to_swap(chosen)
@@ -107,7 +93,6 @@ function draw_start_screen()
 
 	print("\^igoo!", 54, 32, t() * 4 % 16)
 
-	--
 	print("")
 	print("controls:", 0, 70, 10)
 	print("⬅️➡️ choose card", 5)
@@ -150,9 +135,6 @@ end
 -->8
 -- cards
 function draw_card(card, idx, x, y)
-	-- if card.chosen then
-	-- 	y += 2*sin(t())
-	-- end
 	clip(x, y, 32, 48)
 
 	palt(0, false)
@@ -184,7 +166,6 @@ function shuffle()
 		local card = {}
 		card.play = false
 		card.rank = i
-		-- card.chosen=false
 		add(deck, card)
 	end
 
@@ -223,8 +204,8 @@ function toggle_to_swap(idx)
 			end
 		end
 
-		// cant have more than 2 cards
-		// ready to swap
+		-- cant have more than 2 cards
+		-- ready to swap
 		if cnt_play_cards >= 2 then
 			return
 		end
@@ -321,25 +302,31 @@ function set_highlight()
 	end
 end
 
-function choose_card()
-	-- debug("choose_card"..chosen)
-	local c = hand[chosen]
-
-	if btnp(⬅️) then
-		if c.rank == sum then
-			chosen -= 2
-		else
-			chosen -= 1
-		end
-		-- chosen -= 1
-		sfx(0)
-	end
-	if btnp(➡️) then
+function choose_card(dir)
+	if dir == "desc" then
+		chosen -= 1
+	elseif dir == "asc" then
 		chosen += 1
-		sfx(0)
 	end
 
 	check_end_of_hand()
+
+	local c = hand[chosen]
+
+	if c.rank == sum then
+		c.summed = true
+		if dir == "desc" then
+			chosen -= 1
+		elseif dir == "asc" then
+			chosen += 1
+		end
+	else
+		c.summed = false
+	end
+
+	check_end_of_hand()
+
+	sfx(0)
 end
 
 function check_end_of_hand()

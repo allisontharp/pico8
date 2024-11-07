@@ -1,3 +1,38 @@
 
 2024-11-07 00:24:53 /Users/allisontharp/Projects/pico8/carts/goo.p8
  rr
+2024-11-07 00:27:05 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rr
+2024-11-07 00:27:28 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrrrrr
+2024-11-07 00:28:46 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrrr
+2024-11-07 00:31:21 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ 
+2024-11-07 00:32:29 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ r_____
+2024-11-07 00:32:46 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ riirrrr_rr_________
+2024-11-07 00:33:01 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ ri.
+2024-11-07 00:34:33 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrr__rrrrr_rrrrr____r___rrr_________
+2024-11-07 00:36:32 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ 
+2024-11-07 00:41:51 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ r__iccrrr_r_rr_r_r___rr_rrrrrrrr__r__r____r_rr__rr_r_________
+2024-11-07 00:42:39 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rirrrrr
+2024-11-07 00:43:49 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ r______iicc
+2024-11-07 00:44:31 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrrr__rr__r
+2024-11-07 00:46:25 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ 
+2024-11-07 00:46:49 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrrrrrrrri.........
+2024-11-07 00:47:31 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrr_rrrrrrrrrr
+2024-11-07 00:48:22 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ r________rii.........rrr_________cc.........c.........crriiii.........i..i......
+ 
