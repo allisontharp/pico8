@@ -51,43 +51,47 @@
 [000000]     46 capture_timestamps 0
 [000000]   
 [000000]   codo_system_init
-[000325]   Compiled against SDL version: 2.28.5
-[000325]   Linked against SDL version:   2.28.5
-[000325]   Current video driver: cocoa
-[000325]   codo_reset_timer
-[000325]   codo_gui_init
-[000325]   codo_keys_init
-[000325]   codo_text_init
-[000325]   codo_video_init
-[000325]   codo_mouse_init
-[000325]   codo_joystick_init
+[000326]   Compiled against SDL version: 2.28.5
+[000326]   Linked against SDL version:   2.28.5
+[000326]   Current video driver: cocoa
+[000326]   codo_reset_timer
+[000326]   codo_gui_init
+[000326]   codo_keys_init
+[000326]   codo_text_init
+[000326]   codo_video_init
+[000326]   codo_mouse_init
+[000326]   codo_joystick_init
 [000326]   Reading controller mappings: /Users/allisontharp/Projects/pico8/sdl_controllers.txt
-[000326]   searching for joysticks
-[000326]     found 0 joysticks
-[000326]   ok
-[000326] ok
-[000328] codo_load_pod: /Applications/PICO-8.app/Contents/MacOS/pico8.dat ok 
-[000329] codo_set_screen 128 128 8 100
-[000329]  window size: 640 540
-[000356]   setting filter to nearest (screen_mode 0  back page width: 128)
+[000327]   searching for joysticks
+[000327]     found 0 joysticks
+[000327]   ok
+[000327] ok
+[000336] codo_load_pod: /Applications/PICO-8.app/Contents/MacOS/pico8.dat ok 
+[000337] codo_set_screen 128 128 8 100
+[000337]  window size: 640 540
+[000364]   setting filter to nearest (screen_mode 0  back page width: 128)
   renderer metal:
    flags: 0x0000000E ( |  | )
    texture formats (6): ARGB8888, ABGR8888, YV12, IYUV, 0x3231564e, 0x3132564e
    max texture size: 16384x16384
-[000356]  desktop size: 1470 956
-[000356] ok
-[000359] codo_sound_init mix_buffer_size: 1024
-[000359] codo_sound_init
-[000359] SDL_INIT_AUDIO ok
-[000401] SDL_OpenAudio ok
-[000401]  freq:22050
+[000365]  desktop size: 1470 956
+[000365] ok
+[000368] codo_sound_init mix_buffer_size: 1024
+[000368] codo_sound_init
+[000368] SDL_INIT_AUDIO ok
+[000405] SDL_OpenAudio ok
+[000405]  freq:22050
  channels:1
-[000401] Built-in audio drivers: 0 coreaudio 1 disk 2 dummy
-[000401] Current audio driver: coreaudio
-[003296] loading /Users/allisontharp/Projects/pico8/carts/goo.p8
-[003296] set current path: 
-[004972] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
-[038563] codo_save_png result: 0  file: /Users/allisontharp/Projects/pico8/_clip.p8.png
-[078932] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
-[771530] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
-[782541] codo_save_png result: 0  file: /Users/allisontharp/Projects/pico8/_clip.p8.png
+[000405] Built-in audio drivers: 0 coreaudio 1 disk 2 dummy
+[000405] Current audio driver: coreaudio
+[002422] loading /Users/allisontharp/Projects/pico8/carts/goo.p8
+[002422] set current path: 
+[004099] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[144284] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[206655] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[452088] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[504403] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[518224] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[556416] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[576632] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
+[591721] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 

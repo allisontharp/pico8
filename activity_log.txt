@@ -36,3 +36,7 @@
 2024-11-07 00:48:22 /Users/allisontharp/Projects/pico8/carts/goo.p8
  r________rii.........rrr_________cc.........c.........crriiii.........i..i......
  
+2024-11-07 01:06:18 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rssssssssssssssssssssssss.ssssssssssssssscc..ccrrrrrrrrrr____rrcc.ccrrrcssssssss
+ ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssccrrcsssssss
+ 
