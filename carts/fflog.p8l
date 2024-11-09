@@ -1,2 +1,70 @@
-set player.s to: 2
-set player.s to: 2
+add_new_fish color: 15
+add_new_fish color: 12
+adding sprite 2
+add_new_fish color: 4
+adding sprite 3
+add_new_fish color: 5
+adding sprite 3
+add_new_fish color: 13
+adding sprite 1
+add_new_fish color: 0
+adding sprite 3
+add_new_fish color: 4
+adding sprite 1
+add_new_fish color: 5
+adding sprite 2
+collisision
+fish
+	right: 62.9012 left: 61.9012 top: 15 bottom: 16
+player1
+	right: 62 left: 61 top: 15 bottom: 16
+	x: 59 hitbox off_x: 2
+	y: 13 hitbox off_y: 2 h: 1
+add_new_fish color: 0
+adding sprite 2
+add_new_fish color: 12
+adding sprite 3
+add_new_fish color: 11
+adding sprite 3
+collisision
+fish
+	right: 67.0692 left: 66.0692 top: 12 bottom: 13
+player2
+	right: 67 left: 66 top: 13 bottom: 14
+	x: 64 hitbox off_x: 2
+	y: 11 hitbox off_y: 2 h: 1
+add_new_fish color: 11
+adding sprite 2
+add_new_fish color: 7
+adding sprite 3
+collisision
+fish
+	right: 86.8424 left: 84.8424 top: 17 bottom: 20
+player3
+	right: 85 left: 84 top: 16 bottom: 17
+	x: 82 hitbox off_x: 2
+	y: 14 hitbox off_y: 2 h: 1
+add_new_fish color: 15
+adding sprite 1
+collisision
+fish
+	right: 93.2618 left: 89.2618 top: 16 bottom: 19
+player3
+	right: 90 left: 89 top: 17 bottom: 18
+	x: 87 hitbox off_x: 2
+	y: 15 hitbox off_y: 2 h: 1
+add_new_fish color: 4
+adding sprite 2
+collisision
+fish
+	right: 92.751 left: 90.751 top: 12 bottom: 15
+player3
+	right: 91 left: 90 top: 14 bottom: 15
+	x: 88 hitbox off_x: 2
+	y: 12 hitbox off_y: 2 h: 1
+add_new_fish color: 3
+adding sprite 1
+add_new_fish color: 11
+adding sprite 3
+add_new_fish color: 8
+adding sprite 1

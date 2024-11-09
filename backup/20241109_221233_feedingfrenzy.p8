@@ -5,10 +5,8 @@ p_speed = 1
 max_sprite = 3
 max_enemies = 10
 max_screen = 128
-dbug = true
-test_hitbox = false
-
 function _init()
+	dbug = true
 	show_start_screen()
 end
 
@@ -24,12 +22,12 @@ function init()
 	fishes = {}
 	player = create_player()
 	score = 0
-	if (test_hitbox) add_new_fish(1, flr(rnd(16)), 10, 10)
+	add_new_fish(1, flr(rnd(16)), 0, 5)
 	add(fishes, player)
 end
 
 -->8
--- fishad
+-- fish
 function create_player()
 	return {
 		s = 1,
@@ -55,32 +53,31 @@ function create_player()
 				self.y = 0 + 5
 			end
 		end,
-		hitbox = get_hitbox(1)
+		hitbox = get_hitbox(2)
 	}
 end
 
 function add_new_fish(_s, _c, _x, _y)
+	debug("add_new_fish color: " .. _c)
 	if _c == 0 then
 		_c = 3
 	end
+	-- speed = rnd(p_speed - 0.5)
+	-- if (speed <= 0.1) speed = 0.1
+	-- _dx = speed
+	-- if _x == max_screen then
+	-- 	_dx *= -1
+	-- end
 
-	if not test_hitbox then
-		speed = rnd(p_speed - 0.5)
-		if speed <= 0.1 then speed = 0.1 end
-		_dx = speed
-		if _x == max_screen then
-			_dx *= -1
-		end
+	-- _s = flr(rnd(player.s + 2)) + 1
+	-- if _s > max_sprite then
+	-- 	_s = max_sprite
+	-- end
 
-		_s = flr(rnd(player.s + 2)) + 1
-		if _s > max_sprite then
-			_s = max_sprite
-		end
-	else
-		_dx = 0
-		_s = 1
-		-- _dx = 0.1
-	end
+	_dx = 0
+	_s = 1
+
+	debug("adding sprite " .. _s)
 
 	add(
 		fishes, {
@@ -98,13 +95,13 @@ function add_new_fish(_s, _c, _x, _y)
 			update = function(self)
 				self.x += self.dx
 				self.y += self.dy
-				if self.x <= 0 or self.y <= 0
-						or self.x >= max_screen or self.y >= max_screen then
-					del(fishes, self)
-				end
-				if self.dx == -1 then
-					flip = true
-				end
+				-- if self.x <= 0 or self.y <= 0
+				-- 		or self.x >= max_screen or self.y >= max_screen then
+				-- 	del(fishes, self)
+				-- end
+				-- if self.dx == -1 then
+				-- 	flip = true
+				-- end
 				check_col(self)
 			end,
 			hitbox = get_hitbox(_s)
@@ -115,10 +112,10 @@ end
 function get_hitbox(s)
 	if s == 1 then
 		return {
-			off_x = 2,
-			off_y = 2,
-			w = 1,
-			h = 1
+			off_x = 3,
+			off_y = 3,
+			w = 0,
+			h = 0
 		}
 	end
 
@@ -161,24 +158,18 @@ function check_col(f)
 	p_top = player.y + player.hitbox.off_y
 	p_bottom = player.y + player.hitbox.off_y + player.hitbox.h
 
-	if f_right >= p_left and f_left <= p_right
-			and f_bottom >= p_top and f_top <= p_bottom then
+	if f_right >= p_left and (f_bottom < p_top or f_top < p_bottom)
+			and f_left <= p_right then
 		debug("collisision")
-		debug("fish")
-		debug("\tright: " .. f_right .. " left: " .. f_left .. " top: " .. f_top .. " bottom: " .. f_bottom)
-		debug("player" .. player.s)
-		debug("\tright: " .. p_right .. " left: " .. p_left .. " top: " .. p_top .. " bottom: " .. p_bottom)
-		debug("\tx: " .. player.x .. " hitbox off_x: " .. player.hitbox.off_x)
-		debug("\ty: " .. player.y .. " hitbox off_y: " .. player.hitbox.off_y .. " h: " .. player.hitbox.h)
-		if f.s <= player.s then
-			score += 1
-			if player.s < max_sprite then
-				player.s += 1
-			end
-			del(fishes, f)
-		else
-			show_lose_screen()
-		end
+		-- if f.s <= player.s then
+		-- 	score += 1
+		-- 	if player.s < max_sprite then
+		-- 		player.s += 1
+		-- 	end
+		-- 	del(fishes, f)
+		-- else
+		-- 	show_lose_screen()
+		-- end
 	end
 end
 
@@ -222,8 +213,6 @@ end
 
 function draw_game()
 	cls()
-	-- map(0, 0)
-	circ(5, 1, 1, 8)
 	for f in all(fishes) do
 		f:draw()
 	end
@@ -242,13 +231,13 @@ function update_game()
 	end
 	if (btnp(⬆️)) player.dy = -1
 	if (btnp(⬇️)) player.dy = 1
-	if flr(rnd(100)) > 95 and #fishes < max_enemies and not test_hitbox then
-		x = 0
-		if flr(rnd(1) * 100) % 2 == 0 then
-			x = max_screen
-		end
-		add_new_fish(1, flr(rnd(16)), x, flr(rnd(max_screen)))
-	end
+	-- if flr(rnd(100)) > 95 and #fishes < max_enemies then
+	-- 	x = 0
+	-- 	if flr(rnd(1) * 100) % 2 == 0 then
+	-- 		x = max_screen
+	-- 	end
+	-- 	add_new_fish(1, flr(rnd(16)), x, flr(rnd(max_screen)))
+	-- end
 	for f in all(fishes) do
 		f:update()
 	end

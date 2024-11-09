@@ -1,13 +1,15 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
+p_speed = 1
+max_sprite = 3
+max_enemies = 10
+max_screen = 128
+dbug = true
+test_hitbox = false
+
 function _init()
-	dbug = true
-	fishes = {}
-	player = create_player()
-	add_new_fish(1, flr(rnd(16)), 0, 5)
-	add(fishes, player)
-	restart_game()
+	show_start_screen()
 end
 
 function _draw()
@@ -18,8 +20,16 @@ function _update()
 	_upd()
 end
 
+function init()
+	fishes = {}
+	player = create_player()
+	score = 0
+	if (test_hitbox) add_new_fish(1, flr(rnd(16)), 10, 10)
+	add(fishes, player)
+end
+
 -->8
--- fish
+-- fishad
 function create_player()
 	return {
 		s = 1,
@@ -34,30 +44,70 @@ function create_player()
 		update = function(self)
 			self.x += self.dx
 			self.y += self.dy
+			if self.x <= 0 then
+				self.x = max_screen - 5
+			elseif self.x >= max_screen then
+				self.x = 0 + 5
+			end
+			if self.y <= 0 then
+				self.y = max_screen - 5
+			elseif self.y >= max_screen then
+				self.y = 0 + 5
+			end
 		end,
-		hitbox = get_hitbox(2)
+		hitbox = get_hitbox(1)
 	}
 end
 
 function add_new_fish(_s, _c, _x, _y)
+	debug("add_new_fish color: " .. _c)
 	if _c == 0 then
 		_c = 3
 	end
+
+	if not test_hitbox then
+		speed = rnd(p_speed - 0.5)
+		if speed <= 0.1 then speed = 0.1 end
+		_dx = speed
+		if _x == max_screen then
+			_dx *= -1
+		end
+
+		_s = flr(rnd(player.s + 2)) + 1
+		if _s > max_sprite then
+			_s = max_sprite
+		end
+	else
+		_dx = 0
+		_s = 1
+		-- _dx = 0.1
+	end
+
+	debug("adding sprite " .. _s)
+
 	add(
 		fishes, {
 			s = _s,
+			c = _c,
 			x = _x,
 			y = _y,
-			dx = 0.1,
+			dx = _dx,
 			dy = 0,
 			draw = function(self)
-				pal(9, 3)
-				spr(self.s, self.x, self.y)
+				pal(9, self.c)
+				spr(self.s, self.x, self.y, 1, 1, self.dx < 0)
 				pal()
 			end,
 			update = function(self)
 				self.x += self.dx
 				self.y += self.dy
+				if self.x <= 0 or self.y <= 0
+						or self.x >= max_screen or self.y >= max_screen then
+					del(fishes, self)
+				end
+				if self.dx == -1 then
+					flip = true
+				end
 				check_col(self)
 			end,
 			hitbox = get_hitbox(_s)
@@ -68,10 +118,10 @@ end
 function get_hitbox(s)
 	if s == 1 then
 		return {
-			off_x = 3,
-			off_y = 3,
-			w = 0,
-			h = 0
+			off_x = 2,
+			off_y = 2,
+			w = 1,
+			h = 1
 		}
 	end
 
@@ -80,6 +130,15 @@ function get_hitbox(s)
 			off_x = 2,
 			off_y = 2,
 			w = 2,
+			h = 3
+		}
+	end
+
+	if s == 3 then
+		return {
+			off_x = 0,
+			off_y = 1,
+			w = 4,
 			h = 3
 		}
 	end
@@ -105,12 +164,21 @@ function check_col(f)
 	p_top = player.y + player.hitbox.off_y
 	p_bottom = player.y + player.hitbox.off_y + player.hitbox.h
 
-	if f_right >= p_left and (f_bottom < p_top or f_top < p_bottom)
-			and f_left <= p_right then
+	if f_right >= p_left and f_left <= p_right
+			and f_bottom >= p_top and f_top <= p_bottom then
+		debug("collisision")
+		debug("fish")
+		debug("\tright: " .. f_right .. " left: " .. f_left .. " top: " .. f_top .. " bottom: " .. f_bottom)
+		debug("player" .. player.s)
+		debug("\tright: " .. p_right .. " left: " .. p_left .. " top: " .. p_top .. " bottom: " .. p_bottom)
+		debug("\tx: " .. player.x .. " hitbox off_x: " .. player.hitbox.off_x)
+		debug("\ty: " .. player.y .. " hitbox off_y: " .. player.hitbox.off_y .. " h: " .. player.hitbox.h)
 		if f.s <= player.s then
-			player.s += 1
+			score += 1
+			if player.s < max_sprite then
+				player.s += 1
+			end
 			del(fishes, f)
-			debug("set player.s to: " .. player.s)
 		else
 			show_lose_screen()
 		end
@@ -127,13 +195,38 @@ end
 
 -->8
 -- screens
+function show_start_screen()
+	_drw = function()
+		cls()
+
+		print("\^imini minnows", 45, 32, t() * 4 % 16)
+
+		print("")
+		print("controls:", 0, 70, 10)
+		print("⬅️➡️ move left/right", 5)
+		print("⬆️⬇️ move up/down", 5)
+
+		print("press ❎ to play", 30, 120, 5 + t() * 10 % 2)
+	end
+
+	_upd = function()
+		cls()
+		if btnp(❎) then
+			restart_game()
+		end
+	end
+end
+
 function restart_game()
 	_upd = update_game
 	_drw = draw_game
+	init()
 end
 
 function draw_game()
 	cls()
+	-- map(0, 0)
+	circ(5, 1, 1, 8)
 	for f in all(fishes) do
 		f:draw()
 	end
@@ -143,39 +236,49 @@ function update_game()
 	player.dx = 0
 	player.dy = 0
 	if btnp(⬅️) then
-		player.dx = -2
+		player.dx = -1 * p_speed
 		player.flip = true
 	end
 	if btnp(➡️) then
-		player.dx = 2
+		player.dx = 1 * p_speed
 		player.flip = false
 	end
 	if (btnp(⬆️)) player.dy = -1
 	if (btnp(⬇️)) player.dy = 1
+	if flr(rnd(100)) > 95 and #fishes < max_enemies and not test_hitbox then
+		x = 0
+		if flr(rnd(1) * 100) % 2 == 0 then
+			x = max_screen
+		end
+		add_new_fish(1, flr(rnd(16)), x, flr(rnd(max_screen)))
+	end
 	for f in all(fishes) do
 		f:update()
 	end
 end
 
 function show_lose_screen()
-	_upd = update_lose_screen
-	_drw = draw_lose_screen
-end
+	_drw = function()
+		cls()
 
-function draw_lose_screen()
-	cls()
-	print("LOSER!")
-end
-
-function update_lose_screen()
+		print("Loser!")
+		print("Score: " .. score, 5)
+		print("press ❎ to play", 30, 120, 5 + t() * 10 % 2)
+	end
+	_upd = function()
+		cls()
+		if btnp(❎) then
+			restart_game()
+		end
+	end
 end
 
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00700700000000000090000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00077000000900000009000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-00077000000000000090000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00700700000000000090000009090000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000000900000009000000999000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+00077000000000000090000009090000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00700700000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
