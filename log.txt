@@ -13,7 +13,7 @@
 [000000]     08 blit_method 0  // 0 auto  1 software (slower but sometimes more reliable)  2 hardware (can do filtered scaling) 
 [000000]     09 foreground_sleep_ms 2 // number of milliseconds to sleep each frame. Try 10 to conserve battery power
 [000000]     10 background_sleep_ms 10 // number of milliseconds to sleep each frame when running in the background
-[000000]     11 sessions 86 // number of times program has been run
+[000000]     11 sessions 174 // number of times program has been run
 [000000]     12 rmb_key 0 // 0 for none  226 for LALT
 [000000]     13 desktop_path 
 [000000]     14 read_controllers_in_background 0
@@ -50,52 +50,51 @@
 [000000]     45 gfx_grid_lines 0
 [000000]     46 capture_timestamps 0
 [000000]   
-[000000]   codo_system_init
-[000295]   Compiled against SDL version: 2.28.5
-[000295]   Linked against SDL version:   2.28.5
-[000295]   Current video driver: cocoa
-[000295]   codo_reset_timer
-[000295]   codo_gui_init
-[000295]   codo_keys_init
-[000295]   codo_text_init
-[000295]   codo_video_init
-[000295]   codo_mouse_init
-[000295]   codo_joystick_init
-[000295]   Reading controller mappings: /Users/allisontharp/Projects/pico8/sdl_controllers.txt
-[000296]   searching for joysticks
-[000296]     found 0 joysticks
-[000296]   ok
-[000296] ok
-[000304] codo_load_pod: /Applications/PICO-8.app/Contents/MacOS/pico8.dat ok 
-[000305] codo_set_screen 128 128 8 100
-[000305]  window size: 640 540
-[000333]   setting filter to nearest (screen_mode 0  back page width: 128)
+[000001]   codo_system_init
+[000311]   Compiled against SDL version: 2.28.5
+[000311]   Linked against SDL version:   2.28.5
+[000311]   Current video driver: cocoa
+[000311]   codo_reset_timer
+[000311]   codo_gui_init
+[000311]   codo_keys_init
+[000311]   codo_text_init
+[000311]   codo_video_init
+[000311]   codo_mouse_init
+[000311]   codo_joystick_init
+[000312]   Reading controller mappings: /Users/allisontharp/Projects/pico8/sdl_controllers.txt
+[000312]   searching for joysticks
+[000312]     found 0 joysticks
+[000312]   ok
+[000312] ok
+[000313] codo_load_pod: /Applications/PICO-8.app/Contents/MacOS/pico8.dat ok 
+[000315] codo_set_screen 128 128 8 100
+[000315]  window size: 640 540
+[000336]   setting filter to nearest (screen_mode 0  back page width: 128)
   renderer metal:
    flags: 0x0000000E ( |  | )
    texture formats (6): ARGB8888, ABGR8888, YV12, IYUV, 0x3231564e, 0x3132564e
    max texture size: 16384x16384
-[000334]  desktop size: 1470 956
-[000334] ok
-[000337] codo_sound_init mix_buffer_size: 1024
-[000337] codo_sound_init
-[000337] SDL_INIT_AUDIO ok
-[000378] SDL_OpenAudio ok
-[000378]  freq:22050
+[000336]  desktop size: 1470 956
+[000336] ok
+[000339] codo_sound_init mix_buffer_size: 1024
+[000339] codo_sound_init
+[000339] SDL_INIT_AUDIO ok
+[000386] SDL_OpenAudio ok
+[000386]  freq:22050
  channels:1
-[000378] Built-in audio drivers: 0 coreaudio 1 disk 2 dummy
-[000378] Current audio driver: coreaudio
-[002388] loading /Users/allisontharp/Projects/pico8/carts/goo.p8
-[002388] set current path: 
-[004066] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
-[070008] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/goo.p8 running_filename: goo.p8 running_cart_lid: 
-[075204] window closed (14)
-[075204] codo_exit
-[075204]   cmusic_stop
-[075204]   codo_main_exit
-[075205]   codo_config_save
-[075206]   codo_sound_exit
-[075206]   codo_video_exit
-[075208]   codo_joystick_exit
-[075208]   codo_system_exit
-[075208]   codo_items_created: 1306
-[075208] ok
+[000386] Built-in audio drivers: 0 coreaudio 1 disk 2 dummy
+[000386] Current audio driver: coreaudio
+[002381] loading /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8
+[002381] set current path: 
+[004055] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8 running_filename: feedingfrenzy.p8 running_cart_lid: 
+[015115] window closed (14)
+[015115] codo_exit
+[015115]   cmusic_stop
+[015115]   codo_main_exit
+[015116]   codo_config_save
+[015116]   codo_sound_exit
+[015116]   codo_video_exit
+[015119]   codo_joystick_exit
+[015119]   codo_system_exit
+[015119]   codo_items_created: 1302
+[015119] ok

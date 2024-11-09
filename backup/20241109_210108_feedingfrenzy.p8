@@ -7,15 +7,32 @@ function _init()
 	player = create_player()
 	add_new_fish(1, flr(rnd(16)), 0, 5)
 	add(fishes, player)
-	restart_game()
 end
 
 function _draw()
-	_drw()
+	cls()
+	-- map(0, 0, 0, 0, 16, 16)
+	for f in all(fishes) do
+		f:draw()
+	end
 end
 
 function _update()
-	_upd()
+	player.dx = 0
+	player.dy = 0
+	if btnp(⬅️) then
+		player.dx = -1
+		player.flip = true
+	end
+	if btnp(➡️) then
+		player.dx = 1
+		player.flip = false
+	end
+	if (btnp(⬆️)) player.dy = -1
+	if (btnp(⬇️)) player.dy = 1
+	for f in all(fishes) do
+		f:update()
+	end
 end
 
 -->8
@@ -29,6 +46,9 @@ function create_player()
 		dy = 0,
 		flip = false,
 		draw = function(self)
+			debug("")
+			debug("player sprint: " .. self.s)
+			debug("")
 			spr(self.s, self.x, self.y, 1, 1, self.flip)
 		end,
 		update = function(self)
@@ -48,7 +68,7 @@ function add_new_fish(_s, _c, _x, _y)
 			s = _s,
 			x = _x,
 			y = _y,
-			dx = 0.1,
+			dx = 0,
 			dy = 0,
 			draw = function(self)
 				pal(9, 3)
@@ -112,7 +132,9 @@ function check_col(f)
 			del(fishes, f)
 			debug("set player.s to: " .. player.s)
 		else
-			show_lose_screen()
+			cls()
+			print("LOSER!")
+			debug("loser")
 		end
 	end
 end
@@ -123,51 +145,6 @@ function debug(text)
 	if dbug then
 		printh(text, "fflog")
 	end
-end
-
--->8
--- screens
-function restart_game()
-	_upd = update_game
-	_drw = draw_game
-end
-
-function draw_game()
-	cls()
-	for f in all(fishes) do
-		f:draw()
-	end
-end
-
-function update_game()
-	player.dx = 0
-	player.dy = 0
-	if btnp(⬅️) then
-		player.dx = -2
-		player.flip = true
-	end
-	if btnp(➡️) then
-		player.dx = 2
-		player.flip = false
-	end
-	if (btnp(⬆️)) player.dy = -1
-	if (btnp(⬇️)) player.dy = 1
-	for f in all(fishes) do
-		f:update()
-	end
-end
-
-function show_lose_screen()
-	_upd = update_lose_screen
-	_drw = draw_lose_screen
-end
-
-function draw_lose_screen()
-	cls()
-	print("LOSER!")
-end
-
-function update_lose_screen()
 end
 
 __gfx__

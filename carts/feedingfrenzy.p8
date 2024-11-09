@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
+p_speed = 1
 function _init()
 	dbug = true
 	fishes = {}
@@ -143,11 +144,11 @@ function update_game()
 	player.dx = 0
 	player.dy = 0
 	if btnp(⬅️) then
-		player.dx = -2
+		player.dx = -1 * p_speed
 		player.flip = true
 	end
 	if btnp(➡️) then
-		player.dx = 2
+		player.dx = 1 * p_speed
 		player.flip = false
 	end
 	if (btnp(⬆️)) player.dy = -1
