@@ -60,7 +60,6 @@ function create_player()
 end
 
 function add_new_fish(_s, _c, _x, _y)
-	debug("add_new_fish color: " .. _c)
 	if _c == 0 then
 		_c = 3
 	end
@@ -83,8 +82,6 @@ function add_new_fish(_s, _c, _x, _y)
 		-- _dx = 0.1
 	end
 
-	debug("adding sprite " .. _s)
-
 	add(
 		fishes, {
 			s = _s,
@@ -104,9 +101,6 @@ function add_new_fish(_s, _c, _x, _y)
 				if self.x <= 0 or self.y <= 0
 						or self.x >= max_screen or self.y >= max_screen then
 					del(fishes, self)
-				end
-				if self.dx == -1 then
-					flip = true
 				end
 				check_col(self)
 			end,
@@ -177,6 +171,8 @@ function check_col(f)
 			score += 1
 			if player.s < max_sprite then
 				player.s += 1
+			else
+				show_win_screen()
 			end
 			del(fishes, f)
 		else
@@ -257,6 +253,12 @@ function update_game()
 	end
 end
 
+function update_restart_screen()
+	cls()
+	if btnp(❎) then
+		restart_game()
+	end
+end
 function show_lose_screen()
 	_drw = function()
 		cls()
@@ -265,12 +267,18 @@ function show_lose_screen()
 		print("Score: " .. score, 5)
 		print("press ❎ to play", 30, 120, 5 + t() * 10 % 2)
 	end
-	_upd = function()
+	_upd = update_restart_screen
+end
+
+function show_win_screen()
+	_drw = function()
 		cls()
-		if btnp(❎) then
-			restart_game()
-		end
+
+		print("Winner!")
+		print("Score: " .. score, 5)
+		print("press ❎ to play", 30, 120, 5 + t() * 10 % 2)
 	end
+	_upd = update_restart_screen
 end
 
 __gfx__

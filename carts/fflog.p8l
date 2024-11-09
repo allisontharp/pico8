@@ -68,3 +68,115 @@ add_new_fish color: 11
 adding sprite 3
 add_new_fish color: 8
 adding sprite 1
+collisision
+fish
+	right: 24.0782 left: 23.0782 top: 27 bottom: 28
+player1
+	right: 25 left: 24 top: 27 bottom: 28
+	x: 22 hitbox off_x: 2
+	y: 25 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 123.2008 left: 121.2008 top: 32 bottom: 35
+player1
+	right: 124 left: 123 top: 34 bottom: 35
+	x: 121 hitbox off_x: 2
+	y: 32 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 58.0505 left: 57.0505 top: 96 bottom: 97
+player1
+	right: 58 left: 57 top: 97 bottom: 98
+	x: 55 hitbox off_x: 2
+	y: 95 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 53.6981 left: 52.6981 top: 62 bottom: 63
+player2
+	right: 54 left: 53 top: 61 bottom: 62
+	x: 51 hitbox off_x: 2
+	y: 59 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 33.3275 left: 29.3275 top: 40 bottom: 43
+player3
+	right: 30 left: 29 top: 43 bottom: 44
+	x: 27 hitbox off_x: 2
+	y: 41 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 103.9026 left: 99.9026 top: 19 bottom: 22
+player3
+	right: 101 left: 100 top: 20 bottom: 21
+	x: 98 hitbox off_x: 2
+	y: 18 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 44.9429 left: 40.9429 top: 19 bottom: 22
+player3
+	right: 41 left: 40 top: 22 bottom: 23
+	x: 38 hitbox off_x: 2
+	y: 20 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 59.2398 left: 55.2398 top: 67 bottom: 70
+player3
+	right: 59 left: 58 top: 66 bottom: 67
+	x: 56 hitbox off_x: 2
+	y: 64 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 58.3961 left: 54.3961 top: 79 bottom: 82
+player3
+	right: 55 left: 54 top: 80 bottom: 81
+	x: 52 hitbox off_x: 2
+	y: 78 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 74.4419 left: 70.4419 top: 100 bottom: 103
+player3
+	right: 74 left: 73 top: 99 bottom: 100
+	x: 71 hitbox off_x: 2
+	y: 97 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 30.4975 left: 29.4975 top: 69 bottom: 70
+player1
+	right: 30 left: 29 top: 69 bottom: 70
+	x: 27 hitbox off_x: 2
+	y: 67 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 54.917 left: 52.917 top: 66 bottom: 69
+player2
+	right: 53 left: 52 top: 67 bottom: 68
+	x: 50 hitbox off_x: 2
+	y: 65 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 23.0358 left: 19.0358 top: 63 bottom: 66
+player3
+	right: 24 left: 23 top: 64 bottom: 65
+	x: 21 hitbox off_x: 2
+	y: 62 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 60.646 left: 59.646 top: 6 bottom: 7
+player1
+	right: 60 left: 59 top: 6 bottom: 7
+	x: 57 hitbox off_x: 2
+	y: 4 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 71.5397 left: 69.5397 top: 38 bottom: 41
+player2
+	right: 70 left: 69 top: 37 bottom: 38
+	x: 67 hitbox off_x: 2
+	y: 35 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 77.4666 left: 73.4666 top: 17 bottom: 20
+player3
+	right: 74 left: 73 top: 18 bottom: 19
+	x: 71 hitbox off_x: 2
+	y: 16 hitbox off_y: 2 h: 1
