@@ -188,3 +188,19 @@
  rr_______rr_rr__
 2024-11-07 02:25:34 /Users/allisontharp/Projects/pico8/carts/goo.p8
  rrr_rrrrrrrrr_r
+2024-11-07 02:26:32 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ r______rrii.........
+2024-11-07 02:29:48 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrr__rrrrr_rrr_rrrrrrrrrrrrrrrrrrrrrrrrr__rrr_r
+2024-11-07 02:32:40 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrr
+2024-11-07 02:32:49 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrr
+2024-11-07 02:33:11 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrr_
+2024-11-07 02:33:23 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrr
+2024-11-07 12:59:27 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rssssssssssssssssssssssssssssss.........srrrrrrrrrrr_________r____...ii.i.........cssssss.........
+2024-11-09 17:03:58 /Users/allisontharp/Projects/pico8/carts/goo.p8
+ rrrrrrrrrrrrrr___rrcgcrr

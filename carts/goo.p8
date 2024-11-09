@@ -42,7 +42,7 @@ function draw_game()
 	end
 
 	for i = 1, #hand do
-		x = (i - 1) * 10
+		x = (i - 1) * 12
 		y = 60
 
 		local card = hand[i]
