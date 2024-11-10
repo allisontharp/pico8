@@ -45,7 +45,7 @@ function create_player(s)
 	return {
 		s = 1,
 		x = 4,
-		y = 1,
+		y = 20,
 		dx = 0,
 		dy = 0,
 		xp_goal = d.xp_to_evolve,
@@ -323,8 +323,8 @@ function update_game()
 		player.dx = 1 * p_speed
 		player.flip = false
 	end
-	if (btnp(⬆️)) player.dy = -1
-	if (btnp(⬇️)) player.dy = 1
+	if (btnp(⬆️)) player.dy = -1 * p_speed
+	if (btnp(⬇️)) player.dy = 1 * p_speed
 	if flr(rnd(100)) > 95 and #fishes < max_enemies and not test_hitbox then
 		x = 0
 		if flr(rnd(1) * 100) % 2 == 0 then

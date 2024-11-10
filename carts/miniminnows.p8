@@ -45,7 +45,7 @@ function create_player(s)
 	return {
 		s = 1,
 		x = 4,
-		y = 20,
+		y = 1,
 		dx = 0,
 		dy = 0,
 		xp_goal = d.xp_to_evolve,
