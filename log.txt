@@ -13,7 +13,7 @@
 [000000]     08 blit_method 0  // 0 auto  1 software (slower but sometimes more reliable)  2 hardware (can do filtered scaling) 
 [000000]     09 foreground_sleep_ms 2 // number of milliseconds to sleep each frame. Try 10 to conserve battery power
 [000000]     10 background_sleep_ms 10 // number of milliseconds to sleep each frame when running in the background
-[000000]     11 sessions 332 // number of times program has been run
+[000000]     11 sessions 359 // number of times program has been run
 [000000]     12 rmb_key 0 // 0 for none  226 for LALT
 [000000]     13 desktop_path 
 [000000]     14 read_controllers_in_background 0
@@ -51,50 +51,52 @@
 [000000]     46 capture_timestamps 0
 [000000]   
 [000000]   codo_system_init
-[000322]   Compiled against SDL version: 2.28.5
-[000322]   Linked against SDL version:   2.28.5
-[000322]   Current video driver: cocoa
-[000322]   codo_reset_timer
-[000322]   codo_gui_init
-[000322]   codo_keys_init
-[000322]   codo_text_init
-[000322]   codo_video_init
-[000322]   codo_mouse_init
-[000322]   codo_joystick_init
-[000322]   Reading controller mappings: /Users/allisontharp/Projects/pico8/sdl_controllers.txt
-[000322]   searching for joysticks
-[000322]     found 0 joysticks
-[000322]   ok
-[000322] ok
-[000324] codo_load_pod: /Applications/PICO-8.app/Contents/MacOS/pico8.dat ok 
-[000325] codo_set_screen 128 128 8 100
-[000325]  window size: 640 540
-[000356]   setting filter to nearest (screen_mode 0  back page width: 128)
+[000314]   Compiled against SDL version: 2.28.5
+[000314]   Linked against SDL version:   2.28.5
+[000314]   Current video driver: cocoa
+[000314]   codo_reset_timer
+[000314]   codo_gui_init
+[000314]   codo_keys_init
+[000314]   codo_text_init
+[000315]   codo_video_init
+[000315]   codo_mouse_init
+[000315]   codo_joystick_init
+[000315]   Reading controller mappings: /Users/allisontharp/Projects/pico8/sdl_controllers.txt
+[000315]   searching for joysticks
+[000315]     found 0 joysticks
+[000315]   ok
+[000315] ok
+[000317] codo_load_pod: /Applications/PICO-8.app/Contents/MacOS/pico8.dat ok 
+[000318] codo_set_screen 128 128 8 100
+[000318]  window size: 640 540
+[000346]   setting filter to nearest (screen_mode 0  back page width: 128)
   renderer metal:
    flags: 0x0000000E ( |  | )
    texture formats (6): ARGB8888, ABGR8888, YV12, IYUV, 0x3231564e, 0x3132564e
    max texture size: 16384x16384
-[000356]  desktop size: 1470 956
-[000356] ok
-[000359] codo_sound_init mix_buffer_size: 1024
-[000359] codo_sound_init
-[000359] SDL_INIT_AUDIO ok
-[000413] SDL_OpenAudio ok
-[000413]  freq:22050
+[000347]  desktop size: 1470 956
+[000347] ok
+[000350] codo_sound_init mix_buffer_size: 1024
+[000350] codo_sound_init
+[000350] SDL_INIT_AUDIO ok
+[000405] SDL_OpenAudio ok
+[000405]  freq:22050
  channels:1
-[000413] Built-in audio drivers: 0 coreaudio 1 disk 2 dummy
-[000413] Current audio driver: coreaudio
-[002417] loading /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8
-[002417] set current path: 
-[004094] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8 running_filename: feedingfrenzy.p8 running_cart_lid: 
-[038563] window closed (14)
-[038563] codo_exit
-[038563]   cmusic_stop
-[038563]   codo_main_exit
-[038564]   codo_config_save
-[038564]   codo_sound_exit
-[038564]   codo_video_exit
-[038568]   codo_joystick_exit
-[038568]   codo_system_exit
-[038568]   codo_items_created: 1302
-[038568] ok
+[000405] Built-in audio drivers: 0 coreaudio 1 disk 2 dummy
+[000405] Current audio driver: coreaudio
+[002422] loading /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8
+[002422] set current path: 
+[004100] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8 running_filename: feedingfrenzy.p8 running_cart_lid: 
+[083263] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8 running_filename: feedingfrenzy.p8 running_cart_lid: 
+[276640] run_cart current_filename: /Users/allisontharp/Projects/pico8/carts/feedingfrenzy.p8 running_filename: feedingfrenzy.p8 running_cart_lid: 
+[424095] window closed (14)
+[424096] codo_exit
+[424096]   cmusic_stop
+[424096]   codo_main_exit
+[424097]   codo_config_save
+[424097]   codo_sound_exit
+[424097]   codo_video_exit
+[424106]   codo_joystick_exit
+[424106]   codo_system_exit
+[424106]   codo_items_created: 1302
+[424106] ok
