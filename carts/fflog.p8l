@@ -180,3 +180,367 @@ player3
 	right: 74 left: 73 top: 18 bottom: 19
 	x: 71 hitbox off_x: 2
 	y: 16 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 26.0328 left: 25.0328 top: 50 bottom: 51
+player1
+	right: 27 left: 26 top: 51 bottom: 52
+	x: 24 hitbox off_x: 2
+	y: 49 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 26.0816 left: 25.0816 top: 51 bottom: 52
+player2
+	right: 27 left: 26 top: 50 bottom: 51
+	x: 24 hitbox off_x: 2
+	y: 48 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 60.3799 left: 59.3799 top: 50 bottom: 51
+player3
+	right: 60 left: 59 top: 49 bottom: 50
+	x: 57 hitbox off_x: 2
+	y: 47 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 89.9231 left: 81.9231 top: 28 bottom: 36
+player4
+	right: 82 left: 81 top: 29 bottom: 30
+	x: 79 hitbox off_x: 2
+	y: 27 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 18 left: 10 top: 10 bottom: 18
+player1
+	right: 19 left: 18 top: 9 bottom: 10
+	x: 16 hitbox off_x: 2
+	y: 7 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 18 left: 10 top: 10 bottom: 18
+player1
+	right: 10 left: 9 top: 10 bottom: 11
+	x: 7 hitbox off_x: 2
+	y: 8 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 18 left: 10 top: 10 bottom: 18
+player1
+	right: 10 left: 9 top: 9 bottom: 10
+	x: 7 hitbox off_x: 2
+	y: 7 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 18 left: 10 top: 10 bottom: 18
+player1
+	right: 19 left: 18 top: 11 bottom: 12
+	x: 16 hitbox off_x: 2
+	y: 9 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 93.6251 left: 92.6251 top: 27 bottom: 28
+player1
+	right: 93 left: 92 top: 27 bottom: 28
+	x: 90 hitbox off_x: 2
+	y: 25 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 89.4456 left: 87.4456 top: 41 bottom: 44
+player2
+	right: 90 left: 89 top: 40 bottom: 41
+	x: 87 hitbox off_x: 2
+	y: 38 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 64.5945 left: 62.5945 top: 55 bottom: 58
+player3
+	right: 65 left: 64 top: 55 bottom: 56
+	x: 62 hitbox off_x: 2
+	y: 53 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 6.1082 left: 2.1082 top: 2 bottom: 5
+player1
+	right: 7 left: 6 top: 4 bottom: 5
+	x: 4 hitbox off_x: 2
+	y: 2 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 21.0983 left: 20.0983 top: 7 bottom: 8
+player1
+	right: 22 left: 21 top: 7 bottom: 8
+	x: 19 hitbox off_x: 2
+	y: 5 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 24.2981 left: 22.2981 top: 53 bottom: 56
+player2
+	right: 25 left: 24 top: 53 bottom: 54
+	x: 22 hitbox off_x: 2
+	y: 51 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 73.3386 left: 72.3386 top: 17 bottom: 18
+player1
+	right: 74 left: 73 top: 18 bottom: 19
+	x: 71 hitbox off_x: 2
+	y: 16 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 25.098 left: 24.098 top: 56 bottom: 57
+player1
+	right: 25 left: 24 top: 56 bottom: 57
+	x: 22 hitbox off_x: 2
+	y: 54 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 93.7738 left: 91.7738 top: 31 bottom: 34
+player2
+	right: 92 left: 91 top: 32 bottom: 33
+	x: 89 hitbox off_x: 2
+	y: 30 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 93.4854 left: 89.4854 top: 24 bottom: 27
+player3
+	right: 92 left: 91 top: 27 bottom: 28
+	x: 89 hitbox off_x: 2
+	y: 25 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 74.8771 left: 72.8771 top: 18 bottom: 21
+player4
+	right: 73 left: 72 top: 19 bottom: 20
+	x: 70 hitbox off_x: 2
+	y: 17 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 44.0962 left: 43.0962 top: 20 bottom: 21
+player1
+	right: 45 left: 44 top: 20 bottom: 21
+	x: 42 hitbox off_x: 2
+	y: 18 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 29.9249 left: 27.9249 top: 8 bottom: 11
+player2
+	right: 30 left: 29 top: 8 bottom: 9
+	x: 27 hitbox off_x: 2
+	y: 6 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 55.9754 left: 51.9754 top: 18 bottom: 21
+player3
+	right: 52 left: 51 top: 18 bottom: 19
+	x: 49 hitbox off_x: 2
+	y: 16 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 31.2979 left: 23.2979 top: 13 bottom: 21
+player4
+	right: 32 left: 31 top: 15 bottom: 16
+	x: 29 hitbox off_x: 2
+	y: 13 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 83.6793 left: 82.6793 top: 53 bottom: 54
+player1
+	right: 83 left: 82 top: 53 bottom: 54
+	x: 80 hitbox off_x: 2
+	y: 51 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 87.5301 left: 86.5301 top: 73 bottom: 74
+player2
+	right: 88 left: 87 top: 72 bottom: 73
+	x: 85 hitbox off_x: 2
+	y: 70 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 95.8032 left: 94.8032 top: 77 bottom: 78
+player3
+	right: 96 left: 95 top: 76 bottom: 77
+	x: 93 hitbox off_x: 2
+	y: 74 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 61.3455 left: 53.3455 top: 87 bottom: 95
+player4
+	right: 57 left: 56 top: 86 bottom: 87
+	x: 54 hitbox off_x: 2
+	y: 84 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 10.8472 left: 6.8472 top: 3 bottom: 6
+player1
+	right: 7 left: 6 top: 3 bottom: 4
+	x: 4 hitbox off_x: 2
+	y: 1 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 43.6741 left: 42.6741 top: 60 bottom: 61
+player1
+	right: 44 left: 43 top: 59 bottom: 60
+	x: 41 hitbox off_x: 2
+	y: 57 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 19.9984 left: 18.9984 top: 24 bottom: 25
+player2
+	right: 20 left: 19 top: 25 bottom: 26
+	x: 17 hitbox off_x: 2
+	y: 23 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 31.3092 left: 27.3092 top: 15 bottom: 18
+player3
+	right: 28 left: 27 top: 17 bottom: 18
+	x: 25 hitbox off_x: 2
+	y: 15 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 55.8534 left: 47.8534 top: 24 bottom: 32
+player4
+	right: 49 left: 48 top: 27 bottom: 28
+	x: 46 hitbox off_x: 2
+	y: 25 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 51.0311 left: 50.0311 top: 81 bottom: 82
+player1
+	right: 52 left: 51 top: 81 bottom: 82
+	x: 49 hitbox off_x: 2
+	y: 79 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 45.5403 left: 37.5403 top: 95 bottom: 103
+player2
+	right: 40 left: 39 top: 94 bottom: 95
+	x: 37 hitbox off_x: 2
+	y: 92 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 37.0891 left: 36.0891 top: 35 bottom: 36
+player1
+	right: 38 left: 37 top: 36 bottom: 37
+	x: 35 hitbox off_x: 2
+	y: 34 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 70.8497 left: 68.8497 top: 31 bottom: 34
+player2
+	right: 69 left: 68 top: 31 bottom: 32
+	x: 66 hitbox off_x: 2
+	y: 29 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 78.587 left: 74.587 top: 54 bottom: 57
+player3
+	right: 77 left: 76 top: 53 bottom: 54
+	x: 74 hitbox off_x: 2
+	y: 51 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 95.9707 left: 93.9707 top: 28 bottom: 31
+player4
+	right: 94 left: 93 top: 27 bottom: 28
+	x: 91 hitbox off_x: 2
+	y: 25 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 19.4985 left: 18.4985 top: 49 bottom: 50
+player1
+	right: 20 left: 19 top: 49 bottom: 50
+	x: 17 hitbox off_x: 2
+	y: 47 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 34.8972 left: 32.8972 top: 43 bottom: 46
+player2
+	right: 33 left: 32 top: 46 bottom: 47
+	x: 30 hitbox off_x: 2
+	y: 44 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 65.7742 left: 64.7742 top: 36 bottom: 37
+player3
+	right: 65 left: 64 top: 36 bottom: 37
+	x: 62 hitbox off_x: 2
+	y: 34 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 77.205 left: 75.205 top: 65 bottom: 68
+player4
+	right: 78 left: 77 top: 64 bottom: 65
+	x: 75 hitbox off_x: 2
+	y: 62 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 49.12 left: 41.12 top: 43 bottom: 51
+player5
+	right: 50 left: 49 top: 45 bottom: 46
+	x: 47 hitbox off_x: 2
+	y: 43 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 76.9747 left: 75.9747 top: 21 bottom: 22
+player1
+	right: 77 left: 76 top: 21 bottom: 22
+	x: 74 hitbox off_x: 2
+	y: 19 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 92.8455 left: 90.8455 top: 38 bottom: 41
+player2
+	right: 91 left: 90 top: 37 bottom: 38
+	x: 88 hitbox off_x: 2
+	y: 35 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 71.001 left: 67.001 top: 43 bottom: 46
+player3
+	right: 72 left: 71 top: 43 bottom: 44
+	x: 69 hitbox off_x: 2
+	y: 41 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 54.8778 left: 46.8778 top: 61 bottom: 69
+player4
+	right: 51 left: 50 top: 60 bottom: 61
+	x: 48 hitbox off_x: 2
+	y: 58 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 80.0047 left: 79.0047 top: 33 bottom: 34
+player5
+	right: 80 left: 79 top: 33 bottom: 34
+	x: 77 hitbox off_x: 2
+	y: 31 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 18.7583 left: 14.7583 top: 22 bottom: 25
+player1
+	right: 19 left: 18 top: 23 bottom: 24
+	x: 16 hitbox off_x: 2
+	y: 21 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 99.5029 left: 98.5029 top: 15 bottom: 16
+player1
+	right: 99 left: 98 top: 15 bottom: 16
+	x: 96 hitbox off_x: 2
+	y: 13 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 44.1277 left: 43.1277 top: 33 bottom: 34
+player2
+	right: 45 left: 44 top: 33 bottom: 34
+	x: 42 hitbox off_x: 2
+	y: 31 hitbox off_y: 2 h: 1
+collisision
+fish
+	right: 43.2426 left: 35.2426 top: 31 bottom: 39
+player3
+	right: 44 left: 43 top: 32 bottom: 33
+	x: 41 hitbox off_x: 2
+	y: 30 hitbox off_y: 2 h: 1
