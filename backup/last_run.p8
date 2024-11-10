@@ -1,11 +1,17 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
+--[[
+ideas:
+- choose to upgrade or go faster?
+- hunger countdown
+]]
 p_speed = 1
+max_fish_speed = 1
 max_sprite = 5
 max_enemies = 10
 max_screen = 128
-dbug = true
+dbug = false
 test_hitbox = false
 
 function _init()
@@ -25,6 +31,7 @@ function init()
 	player = create_player()
 	score = 0
 	sp = 1
+	xp_to_evolve = nil
 	if (test_hitbox) add_new_fish(4, flr(rnd(16)), 10, 10)
 	add(fishes, player)
 end
@@ -35,12 +42,14 @@ function create_player(s)
 	if s == nil then
 		s = 1
 	end
+	local d = get_fish_details(s)
 	return {
 		s = 1,
 		x = 4,
 		y = 1,
 		dx = 0,
 		dy = 0,
+		xp_to_evolve = d.xp_to_evolve,
 		flip = false,
 		draw = function(self)
 			local w = 1
@@ -63,8 +72,10 @@ function create_player(s)
 			elseif self.y >= max_screen then
 				self.y = 0 + 5
 			end
+			local d = get_fish_details(self.s)
+			self.hitbox = d.hitbox
 		end,
-		hitbox = get_hitbox(1)
+		hitbox = d.hitbox
 	}
 end
 
@@ -74,7 +85,7 @@ function add_new_fish(_s, _c, _x, _y)
 	end
 
 	if not test_hitbox then
-		speed = rnd(p_speed - 0.5)
+		speed = rnd(max_fish_speed - 0.5)
 		if speed <= 0.1 then speed = 0.1 end
 		_dx = speed
 		if _x == max_screen then
@@ -89,6 +100,8 @@ function add_new_fish(_s, _c, _x, _y)
 		_dx = 0
 		-- _dx = 0.1
 	end
+
+	local d = get_fish_details(_s)
 
 	add(
 		fishes, {
@@ -117,7 +130,7 @@ function add_new_fish(_s, _c, _x, _y)
 				end
 				check_col(self)
 			end,
-			hitbox = get_hitbox(_s)
+			hitbox = d.hitbox
 		}
 	)
 end
@@ -130,57 +143,77 @@ function get_sprite_to_draw(s)
 	return s
 end
 
-function get_hitbox(s)
+function get_fish_details(s, log)
+	if log != nil and log then
+		debug("get_fish_details: " .. s)
+	end
 	if s == 1 then
 		return {
-			off_x = 2,
-			off_y = 2,
-			w = 1,
-			h = 1
+			xp_to_evolve = 2,
+			hitbox = {
+				off_x = 2,
+				off_y = 2,
+				w = 1,
+				h = 1
+			}
 		}
 	end
 
 	if s == 2 then
 		return {
-			off_x = 2,
-			off_y = 2,
-			w = 2,
-			h = 3
+			xp_to_evolve = 4,
+			hitbox = {
+				off_x = 2,
+				off_y = 2,
+				w = 2,
+				h = 3
+			}
 		}
 	end
 
 	if s == 3 then
 		return {
-			off_x = 0,
-			off_y = 1,
-			w = 4,
-			h = 3
+			xp_to_evolve = 5,
+			hitbox = {
+				off_x = 0,
+				off_y = 1,
+				w = 4,
+				h = 3
+			}
 		}
 	end
 
 	if s == 4 then
 		return {
-			off_x = 0,
-			off_y = 0,
-			w = 8,
-			h = 8
+			xp_to_evolve = 7,
+			hitbox = {
+				off_x = 0,
+				off_y = 0,
+				w = 8,
+				h = 8
+			}
 		}
 	end
 
-	if s == 4 then
+	if s == 5 then
 		return {
-			off_x = 0,
-			off_y = 0,
-			w = 16,
-			h = 8
+			xp_to_evolve = 10,
+			hitbox = {
+				off_x = 0,
+				off_y = 0,
+				w = 16,
+				h = 8
+			}
 		}
 	end
 
 	return {
-		off_x = 0,
-		off_y = 0,
-		w = 0,
-		h = 0
+		hitbox = {
+			off_x = 0,
+			off_y = 0,
+			w = 0,
+			h = 0
+		}
 	}
 end
 
@@ -208,9 +241,14 @@ function check_col(f)
 		debug("\ty: " .. player.y .. " hitbox off_y: " .. player.hitbox.off_y .. " h: " .. player.hitbox.h)
 		if f.s <= player.s then
 			score += 1
-			if player.s < max_sprite then
-				player.s += 1
-			else
+			player.xp_to_evolve -= 1
+			-- if player.s < max_sprite then
+			-- 	player.s += 1
+			-- else
+			-- 	show_win_screen()
+			-- end
+
+			if player.s == max_sprite then
 				show_win_screen()
 			end
 			del(fishes, f)
@@ -265,6 +303,8 @@ function draw_game()
 	for f in all(fishes) do
 		f:draw()
 	end
+	print("score: " .. score, 90, 5, 5)
+	print("xp: " .. player.xp_to_evolve, 90, 10, 5)
 	pal(0, 3)
 end
 
@@ -288,6 +328,22 @@ function update_game()
 		end
 		add_new_fish(1, flr(rnd(16)), x, flr(rnd(max_screen)))
 	end
+
+	if btnp(❎) then
+		if player.xp_to_evolve <= 0 then
+			player.s += 1
+			local d = get_fish_details(player.s, true)
+			player.xp_to_evolve = d.xp_to_evolve
+		end
+		-- restart_game()
+	end
+	if btnp(🅾️) then
+		if player.xp_to_evolve <= 0 then
+			p_speed *= 2.1
+			local d = get_fish_details(player.s, true)
+			player.xp_to_evolve = d.xp_to_evolve
+		end
+	end
 	if sp < 2.9 then
 		sp += 0.1
 	else
@@ -310,6 +366,7 @@ function show_lose_screen()
 
 		print("Loser!")
 		print("Score: " .. score, 5)
+		print("XP to Evolve: " .. score, 5)
 		print("press ❎ to play", 30, 120, 5 + t() * 10 % 2)
 	end
 	_upd = update_restart_screen
@@ -339,7 +396,7 @@ __gfx__
 70707070000000000000000000000000000999000000009999999990000000000000000000000000000000000000000000000000000000000000000000000000
 07070707000000000000000000090000009000900000009999909999000000000000000000000000000000000000000000000000000000000000000000000000
 70707070000f00000099000009999000990909090999999999999999000000000000000000000000000000000000000000000000000000000000000000000000
-07070707000000000000000000090000990909090099999999999999000000000000000000000000000000000000000000000000000000000000000000000000
+07070707000000000000000000090000990909000099999999999999000000000000000000000000000000000000000000000000000000000000000000000000
 70707070000000000000000000000000009000900999999999999999000000000000000000000000000000000000000000000000000000000000000000000000
 07070707000000000000000000000000000999000000009999999999000000000000000000000000000000000000000000000000000000000000000000000000
 70707070000000000000000000000000000990000000000999999990000000000000000000000000000000000000000000000000000000000000000000000000
