@@ -1,17 +1,11 @@
 pico-8 cartridge // http://www.pico-8.com
 version 42
 __lua__
---[[
-ideas:
-- choose to upgrade or go faster?
-- hunger countdown
-]]
-p_speed = 1
 max_fish_speed = 1
 max_sprite = 5
 max_enemies = 10
 max_screen = 128
-dbug = true
+dbug = false
 test_hitbox = false
 
 function _init()
@@ -27,232 +21,259 @@ function _update()
 end
 
 function init()
-	fishes = {}
-	player = create_player()
 	score = 0
-	sp = 1
-	if (test_hitbox) add_new_fish(4, flr(rnd(16)), 10, 10)
-	add(fishes, player)
+	ani = 1
+	p_speed = 1
+	init_fishes()
+	-- init_bubbles()
 end
 
 -->8
--- fishad
-function create_player(s)
-	if s == nil then
-		s = 1
+-- fish
+evolution = {
+	spr = 0,
+	xp_to_evolve = 0,
+	hitbox = {
+		off_x = 0,
+		off_y = 0,
+		w = 1,
+		h = 1
+	},
+	evolution_number = 0,
+
+	new = function(self, tbl)
+		tbl = tbl or {}
+		setmetatable(
+			tbl, {
+				__index = self
+			}
+		)
+		return tbl
 	end
-	local d = get_fish_details(s)
-	return {
-		s = 1,
-		x = 4,
-		y = 20,
-		dx = 0,
-		dy = 0,
-		xp_goal = d.xp_to_evolve,
-		xp = 0,
-		flip = false,
-		draw = function(self)
-			local w = 1
-			local h = 1
-			if self.s >= 5 then
-				w = 2
-			end
-			spr(get_sprite_to_draw(self.s), self.x, self.y, w, h, self.flip)
-		end,
-		update = function(self)
-			self.x += self.dx
-			self.y += self.dy
-			if self.x <= 0 then
-				self.x = max_screen - 5
-			elseif self.x >= max_screen then
-				self.x = 0 + 5
-			end
-			if self.y <= 0 then
-				self.y = max_screen - 5
-			elseif self.y >= max_screen then
-				self.y = 0 + 5
-			end
-			local d = get_fish_details(self.s)
-			self.hitbox = d.hitbox
-		end,
-		hitbox = d.hitbox
+}
+fish = {
+	x = 0,
+	y = flr(rnd(max_screen)),
+	dx = rnd(max_fish_speed - 0.5),
+	dy = 0,
+	clr = 0,
+	evolution = minnow,
+	flip = false,
+
+	new = function(self, tbl)
+		tbl = tbl or {}
+		setmetatable(
+			tbl, {
+				__index = self
+			}
+		)
+
+		tbl.clr = flr(rnd(16))
+		if tbl.clr == 1 or tbl.clr == 12 then
+			tbl.clr = 3
+		end
+
+		tbl.x = 0
+		if flr(rnd(1) * 100) % 2 == 0 then
+			tbl.x = max_screen
+		end
+		if tbl.dx <= 0.1 then tbl.dx = 0.1 end
+		if tbl.x == max_screen then
+			tbl.dx *= -1
+			tbl.flip = true
+		end
+		return tbl
+	end,
+
+	update = function(self)
+		self.x += self.dx
+		self.y += self.dy
+
+		if self.x <= 0 or self.y <= 0
+				or self.x >= max_screen or self.y >= max_screen then
+			del(fishes, self)
+		end
+		check_col(self)
+	end,
+
+	draw = function(self)
+		pal(9, self.clr)
+		-- animate
+		local s = self.evolution.spr
+		if ani >= 2 then
+			s += 16
+		end
+		-- sprite widths
+		local w = 1
+		local h = 1
+		if self.evolution.spr >= 5 then
+			w = 2
+		end
+		spr(s, self.x, self.y, w, h, self.flip)
+		pal()
+	end
+}
+
+player = fish:new({
+	xp = 0,
+	-- xp_goal = 2,
+	evolution = minnow,
+	-- new = function(self, tbl)
+	-- 	tbl = bubble.new(self, tbl)
+	-- 	return tbl
+	-- end,
+	update = function(self, tbl)
+		tbl = bubble.new(self, tbl)
+		self.x += self.dx
+		self.y += self.dy
+		if self.x <= 0 then
+			self.x = max_screen - 5
+		elseif self.x >= max_screen then
+			self.x = 0 + 5
+		end
+
+		return tbl
+	end
+})
+
+minnow = evolution:new({
+	spr = 1,
+	evolution_number = 1,
+	xp_to_evolve = 2,
+	hitbox = {
+		off_x = 2,
+		off_y = 2,
+		w = 1,
+		h = 1
 	}
-end
+})
 
-function add_new_fish(_s, _c, _x, _y)
-	if _c == 1 or _c == 12 then
-		_c = 3
-	end
+plip = evolution:new({
+	spr = 2,
+	evolution_number = 2,
+	xp_to_evolve = 4,
+	hitbox = {
+		off_x = 2,
+		off_y = 2,
+		w = 2,
+		h = 3
+	}
+})
 
-	if not test_hitbox then
-		speed = rnd(max_fish_speed - 0.5)
-		if speed <= 0.1 then speed = 0.1 end
-		_dx = speed
-		if _x == max_screen then
-			_dx *= -1
-		end
+nibbler = evolution:new({
+	spr = 3,
+	evolution_number = 3,
+	xp_to_evolve = 5,
+	hitbox = {
+		off_x = 0,
+		off_y = 1,
+		w = 4,
+		h = 3
+	}
+})
 
-		_s = flr(rnd(player.s + 2)) + 1
-		if _s > max_sprite then
-			_s = max_sprite
-		end
-	else
-		_dx = 0
-		-- _dx = 0.1
-	end
+munchler = evolution:new({
+	spr = 4,
+	evolution_number = 4,
+	xp_to_evolve = 7,
+	hitbox = {
+		off_x = 0,
+		off_y = 0,
+		w = 8,
+		h = 8
+	}
+})
 
-	local d = get_fish_details(_s)
+gulp = evolution:new({
+	spr = 5,
+	evolution_number = 5,
+	xp_to_evolve = 10,
+	hitbox = {
+		off_x = 0,
+		off_y = 0,
+		w = 16,
+		h = 8
+	}
+})
+
+-- not implemented yet lol
+devourer = evolution:new({
+	spr = 6,
+	evolution_number = 6,
+	xp_to_evolve = 50,
+	hitbox = {
+		off_x = 0,
+		off_y = 0,
+		w = 16,
+		h = 8
+	}
+})
+
+function init_fishes()
+	fishes = {}
+	evolution_types = {
+		minnow,
+		plip,
+		nibbler,
+		munchler,
+		gulp
+	}
+
+	player = player:new({
+		x = 10,
+		y = 15,
+		evolution = minnow
+	})
 
 	add(
-		fishes, {
-			s = _s,
-			c = _c,
-			x = _x,
-			y = _y,
-			dx = _dx,
-			dy = 0,
-			draw = function(self)
-				pal(9, self.c)
-				local w = 1
-				local h = 1
-				if self.s >= 5 then
-					w = 2
-				end
-				spr(get_sprite_to_draw(self.s), self.x, self.y, w, h, self.dx < 0)
-				pal()
-			end,
-			update = function(self)
-				self.x += self.dx
-				self.y += self.dy
-				if self.x <= 0 or self.y <= 0
-						or self.x >= max_screen or self.y >= max_screen then
-					del(fishes, self)
-				end
-				check_col(self)
-			end,
-			hitbox = d.hitbox
-		}
+		fishes, player
 	)
 end
 
-function get_sprite_to_draw(s)
-	if sp >= 2 then
-		return s + 16
+function add_new_fish()
+	local sprite_num = 1 + flr(rnd(player.evolution.spr + 2))
+	if sprite_num > max_sprite then
+		sprite_num = max_sprite
 	end
-
-	return s
-end
-
-function get_fish_details(s, log)
-	if log != nil and log then
-		debug("get_fish_details: " .. s)
-	end
-	if s == 1 then
-		return {
-			xp_to_evolve = 2,
-			hitbox = {
-				off_x = 2,
-				off_y = 2,
-				w = 1,
-				h = 1
-			}
-		}
-	end
-
-	if s == 2 then
-		return {
-			xp_to_evolve = 4,
-			hitbox = {
-				off_x = 2,
-				off_y = 2,
-				w = 2,
-				h = 3
-			}
-		}
-	end
-
-	if s == 3 then
-		return {
-			xp_to_evolve = 5,
-			hitbox = {
-				off_x = 0,
-				off_y = 1,
-				w = 4,
-				h = 3
-			}
-		}
-	end
-
-	if s == 4 then
-		return {
-			xp_to_evolve = 7,
-			hitbox = {
-				off_x = 0,
-				off_y = 0,
-				w = 8,
-				h = 8
-			}
-		}
-	end
-
-	if s == 5 then
-		return {
-			xp_to_evolve = 10,
-			hitbox = {
-				off_x = 0,
-				off_y = 0,
-				w = 16,
-				h = 8
-			}
-		}
-	end
-
-	return {
-		hitbox = {
-			off_x = 0,
-			off_y = 0,
-			w = 0,
-			h = 0
-		}
-	}
+	local evolution_type = evolution_types[sprite_num]
+	add(
+		fishes, fish:new({
+			evolution = evolution_type,
+			y = rnd(127)
+		})
+	)
 end
 
 -->8
 -- collision
 function check_col(f)
-	f_right = f.x + f.hitbox.off_x + f.hitbox.w
-	f_left = f.x + f.hitbox.off_x
-	f_top = f.y + f.hitbox.off_y
-	f_bottom = f.y + f.hitbox.off_y + f.hitbox.h
+	f_right = f.x + f.evolution.hitbox.off_x + f.evolution.hitbox.w
+	f_left = f.x + f.evolution.hitbox.off_x
+	f_top = f.y + f.evolution.hitbox.off_y
+	f_bottom = f.y + f.evolution.hitbox.off_y + f.evolution.hitbox.h
 
-	p_right = player.x + player.hitbox.off_x + player.hitbox.w
-	p_left = player.x + player.hitbox.off_x
-	p_top = player.y + player.hitbox.off_y
-	p_bottom = player.y + player.hitbox.off_y + player.hitbox.h
+	p_right = player.x + player.evolution.hitbox.off_x + player.evolution.hitbox.w
+	p_left = player.x + player.evolution.hitbox.off_x
+	p_top = player.y + player.evolution.hitbox.off_y
+	p_bottom = player.y + player.evolution.hitbox.off_y + player.evolution.hitbox.h
 
 	if f_right >= p_left and f_left <= p_right
 			and f_bottom >= p_top and f_top <= p_bottom then
 		debug("collisision")
 		debug("fish")
 		debug("\tright: " .. f_right .. " left: " .. f_left .. " top: " .. f_top .. " bottom: " .. f_bottom)
-		debug("player" .. player.s)
+		debug("player" .. player.evolution.spr)
 		debug("\tright: " .. p_right .. " left: " .. p_left .. " top: " .. p_top .. " bottom: " .. p_bottom)
-		debug("\tx: " .. player.x .. " hitbox off_x: " .. player.hitbox.off_x)
-		debug("\ty: " .. player.y .. " hitbox off_y: " .. player.hitbox.off_y .. " h: " .. player.hitbox.h)
-		if f.s <= player.s then
+		debug("\tx: " .. player.x .. " hitbox off_x: " .. player.evolution.hitbox.off_x)
+		debug("\ty: " .. player.y .. " hitbox off_y: " .. player.evolution.hitbox.off_y .. " h: " .. player.evolution.hitbox.h)
+		if f.evolution.spr <= player.evolution.spr then
 			sfx(0)
 			score += 1
-			-- player.xp_to_evolve -= 1
-			if player.xp < player.xp_goal then
+			if player.xp < player.evolution.xp_to_evolve then
 				player.xp += 1
 			end
-			-- if player.s < max_sprite then
-			-- 	player.s += 1
-			-- else
-			-- 	show_win_screen()
-			-- end
 
-			if player.s == max_sprite then
+			if player.spr == max_sprite then
 				show_win_screen()
 			end
 			del(fishes, f)
@@ -303,12 +324,14 @@ end
 function draw_game()
 	cls()
 	map(0, 9, 0, 0)
-	-- circ(5, 1, 1, 8)
 	for f in all(fishes) do
 		f:draw()
 	end
 	print("score: " .. score, 90, 5, 5)
-	-- print("xp: " .. player.xp_to_evolve, 90, 10, 5)
+
+	for bubble in all(bubbles) do
+		bubble:draw()
+	end
 	pal(0, 3)
 	draw_xp()
 end
@@ -326,38 +349,43 @@ function update_game()
 	end
 	if (btnp(⬆️)) player.dy = -1 * p_speed
 	if (btnp(⬇️)) player.dy = 1 * p_speed
-	if flr(rnd(100)) > 95 and #fishes < max_enemies and not test_hitbox then
+	if flr(rnd(100)) > 95 and #fishes < max_enemies + 1 and not test_hitbox then
 		x = 0
 		if flr(rnd(1) * 100) % 2 == 0 then
 			x = max_screen
 		end
-		add_new_fish(1, flr(rnd(16)), x, flr(rnd(max_screen)))
+		add_new_fish()
 	end
 
 	if btnp(❎) then
-		if player.xp >= player.xp_goal then
-			player.s += 1
-			local d = get_fish_details(player.s, true)
-			player.xp_goal = d.xp_to_evolve
+		if player.xp >= player.evolution.xp_to_evolve then
+			player.evolution = evolution_types[player.evolution.evolution_number + 1]
+			-- player.spr += 1
+			-- local d = get_fish_details(player.spr, true)
+			-- player.xp_goal = d.xp_to_evolve
 			player.xp = 0
 		end
-		-- restart_game()
 	end
 	if btnp(🅾️) then
-		if player.xp >= player.xp_goal then
+		if player.xp >= player.evolution.xp_to_evolve then
 			p_speed += 0.5
-			local d = get_fish_details(player.s, true)
+			-- local d = get_fish_details(player.spr, true)
 			player.xp = 0
-			xp_to_goal = 0
+			-- xp_to_goal = 0
 		end
 	end
-	if sp < 2.9 then
-		sp += 0.1
+	if ani < 2.9 then
+		ani += 0.1
 	else
-		sp = 1
+		ani = 1
 	end
+
 	for f in all(fishes) do
 		f:update()
+	end
+
+	for bubble in all(bubbles) do
+		bubble:update()
 	end
 end
 
@@ -395,11 +423,9 @@ end
 function draw_xp()
 	spr(64, 5, 5, 3, 1)
 
-	local pct = player.xp / player.xp_goal
+	local pct = player.xp / player.evolution.xp_to_evolve
 	local lines = 22 * pct
-	if lines > 0 then
-		debug("lines: " .. lines)
-	end
+
 	-- 22 lines
 	for i = 1, lines do
 		local li = i
@@ -447,6 +473,83 @@ xp_bar = {
 		y2 = 9
 	}
 }
+
+-->8
+-- bubbles
+
+bubble = {
+	x = 64,
+	y = 128,
+	spd = .5,
+	rad = 0,
+	clr = 13,
+
+	new = function(self, tbl)
+		tbl = tbl or {}
+		setmetatable(
+			tbl, {
+				__index = self
+			}
+		)
+		return tbl
+	end,
+
+	update = function(self)
+		self.y -= self.spd
+
+		if self.y < 0 then
+			self.y = 127 + self.rad
+		end
+	end,
+
+	draw = function(self)
+		circfill(
+			self.x,
+			self.y,
+			self.rad,
+			self.clr
+		)
+	end
+}
+
+far_bubble = bubble:new({
+	clr = 1,
+	spd = 0.25,
+	rad = 0
+})
+
+near_bubble = bubble:new({
+	clr = 7,
+	spd = .75,
+	rad = 1,
+
+	new = function(self, tbl)
+		tbl = bubble.new(self, tbl)
+
+		tbl.spd = tbl.spd + rnd(.5)
+
+		return tbl
+	end
+})
+
+function init_bubbles()
+	bubbles = {}
+	bubble_types = {
+		near_bubble,
+		bubble,
+		far_bubble
+	}
+
+	for i = 1, 50 do
+		local bubble_type = rnd(bubble_types)
+		add(
+			bubbles, bubble_type:new({
+				x = rnd(127),
+				y = rnd(127)
+			})
+		)
+	end
+end
 
 __gfx__
 00000000000000000000000000000000000990000000000999999990000000000000000000000000000000000000000000000000000000000000000000000000
