@@ -7,6 +7,7 @@ max_enemies = 10
 max_screen = 128
 dbug = false
 test_hitbox = false
+version = "v0.1"
 
 function _init()
 	show_start_screen()
