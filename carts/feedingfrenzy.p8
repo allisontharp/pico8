@@ -25,7 +25,7 @@ function init()
 	ani = 1
 	p_speed = 1
 	init_fishes()
-	-- init_bubbles()
+	init_bubbles()
 end
 
 -->8
@@ -116,12 +116,7 @@ fish = {
 
 player = fish:new({
 	xp = 0,
-	-- xp_goal = 2,
 	evolution = minnow,
-	-- new = function(self, tbl)
-	-- 	tbl = bubble.new(self, tbl)
-	-- 	return tbl
-	-- end,
 	update = function(self, tbl)
 		tbl = bubble.new(self, tbl)
 		self.x += self.dx
@@ -220,8 +215,9 @@ function init_fishes()
 	}
 
 	player = player:new({
-		x = 10,
+		x = 15,
 		y = 15,
+		xp = 0,
 		evolution = minnow
 	})
 
@@ -273,7 +269,7 @@ function check_col(f)
 				player.xp += 1
 			end
 
-			if player.spr == max_sprite then
+			if player.evolution.spr == max_sprite then
 				show_win_screen()
 			end
 			del(fishes, f)
@@ -360,18 +356,13 @@ function update_game()
 	if btnp(❎) then
 		if player.xp >= player.evolution.xp_to_evolve then
 			player.evolution = evolution_types[player.evolution.evolution_number + 1]
-			-- player.spr += 1
-			-- local d = get_fish_details(player.spr, true)
-			-- player.xp_goal = d.xp_to_evolve
 			player.xp = 0
 		end
 	end
 	if btnp(🅾️) then
 		if player.xp >= player.evolution.xp_to_evolve then
 			p_speed += 0.5
-			-- local d = get_fish_details(player.spr, true)
 			player.xp = 0
-			-- xp_to_goal = 0
 		end
 	end
 	if ani < 2.9 then
@@ -476,13 +467,15 @@ xp_bar = {
 
 -->8
 -- bubbles
-
 bubble = {
 	x = 64,
 	y = 128,
-	spd = .5,
+	x_init = 64,
+	dx = 0,
+	dy = .5,
 	rad = 0,
 	clr = 13,
+	freq = 0,
 
 	new = function(self, tbl)
 		tbl = tbl or {}
@@ -491,14 +484,23 @@ bubble = {
 				__index = self
 			}
 		)
+		tbl.x_init = tbl.x
 		return tbl
 	end,
 
 	update = function(self)
-		self.y -= self.spd
+		self.y -= self.dy
+		self.x = self.x_init + 3 * sin(t() * self.freq)
 
 		if self.y < 0 then
-			self.y = 127 + self.rad
+			del(bubbles, self)
+			local bubble_type = rnd(bubble_types)
+			add(
+				bubbles, bubble_type:new({
+					x = rnd(127),
+					y = 127
+				})
+			)
 		end
 	end,
 
@@ -514,19 +516,20 @@ bubble = {
 
 far_bubble = bubble:new({
 	clr = 1,
-	spd = 0.25,
+	dy = 0.25,
 	rad = 0
 })
 
 near_bubble = bubble:new({
 	clr = 7,
-	spd = .75,
+	dy = .75,
 	rad = 1,
 
 	new = function(self, tbl)
 		tbl = bubble.new(self, tbl)
 
-		tbl.spd = tbl.spd + rnd(.5)
+		tbl.dy = tbl.dy + rnd(.5)
+		tbl.freq = rnd(1) * .75
 
 		return tbl
 	end
@@ -535,12 +538,12 @@ near_bubble = bubble:new({
 function init_bubbles()
 	bubbles = {}
 	bubble_types = {
-		near_bubble,
-		bubble,
-		far_bubble
+		near_bubble
+		-- bubble,
+		-- far_bubble
 	}
 
-	for i = 1, 50 do
+	for i = 1, 2 do
 		local bubble_type = rnd(bubble_types)
 		add(
 			bubbles, bubble_type:new({

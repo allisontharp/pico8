@@ -9,6 +9,10 @@ dbug = false
 test_hitbox = false
 
 function _init()
+	MENUITEM(1, "FOO",
+	MENUITEM(1, "RESTART PUZZLE",
+  FUNCTION() restart_game() SFX(10) END
+	)
 	show_start_screen()
 end
 
