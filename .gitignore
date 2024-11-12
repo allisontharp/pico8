@@ -1,5 +1,4 @@
-backup/
+backup/*
 activity_log.txt
-config.txt
 log.txt 
 *.p8l
